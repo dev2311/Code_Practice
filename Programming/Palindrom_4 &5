@@ -1,0 +1,77 @@
+package org.java.dks;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
+// palindrom using only 4 & 5 ...finding min number which is palindrom n created using 4 & 5 only 
+// this is lendingkart question 
+public class TestClass {
+
+    public static void main(String[] args) throws IOException {
+		/*
+		 * BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		 * PrintWriter wr = new PrintWriter(System.out); int T =
+		 * Integer.parseInt(br.readLine().trim()); for(int t_i=0; t_i<T; t_i++) { int N
+		 * = Integer.parseInt(br.readLine().trim());
+		 * 
+		 * String out_ = Solve(N); System.out.println(out_); }
+		 * 
+		 * wr.close(); br.close();
+		 */
+    	
+    	System.out.println(Solve(7));
+    }
+    
+    
+    static String Solve(int N){
+        // your code goes here
+        char [] arr = {'4'};
+        if(N==1)
+            return new String(arr)+new String(arr);
+
+        //N=N-1;// starting from 1 so reduced one vale here
+        
+        // find first 4 from right change it to 5 then change all after it into 4
+        // if no 4 then create new array+1 size n put all 4
+        
+        int count = 1;
+        while(count<N)
+        {
+        	count++;
+        	// 1
+        	int len= arr.length;
+        	int index = len-1;
+        	while(index>=0 && arr[index]!='4')
+        	{
+        		index--;
+        	}
+        	if(index<0)// create new arr
+        	{
+        		arr = new char[len+1];
+        		for(int j =0; j <arr.length;j++)
+        		{
+        			arr[j]='4';
+        		}
+        	}
+        	else if(index>=0)
+        	{
+        		arr[index]='5';
+        		for(int k =index+1; k<len;k++)
+        		{
+        			arr[k]='4';
+        		}
+        	}
+        }
+        
+        String first = new String(arr);
+        StringBuffer  sb = new StringBuffer(first);
+        sb = sb.reverse();
+        return new String(arr)+sb;
+        
+        
+    
+    }
+
+}
