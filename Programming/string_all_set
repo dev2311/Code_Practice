@@ -1,5 +1,5 @@
 // print all set of a string in recursive manner 
-package org.java.dks;
+package org.java.practice;
 
 
 public class A 
