@@ -1,0 +1,20 @@
+package org.java.practice;
+
+
+public class A 
+{
+
+	public static void print(int num)
+	{
+		if(num>1)
+			print(num-1);
+		System.out.println(num);
+		
+	}
+	public static void main(String[] args)
+	{
+		int i =10;
+		print(i);
+		
+	}
+}
