@@ -1,0 +1,96 @@
+// transaform s to t string ..by replacing one character or by removing one character or by swaping neighbour character of source string into target 
+
+package org.java.practice;
+
+
+public class A 
+{
+	
+	public static boolean canTransform(String s, String t )
+	{
+		int slen= s.length();
+		int tlen= t.length();
+		if(s==null || t ==null)
+			return false;
+		if(s.equals(t))
+			return true;
+		
+		if(slen==tlen || slen==tlen+1)
+		{
+			// swap ..replace ..remove 
+			if(slen==tlen)
+			{
+				int diff =0;
+				int index=-1;
+				for(int i =0; i <slen; i++)
+				{
+					if(s.charAt(i)!=t.charAt(i))
+					{
+						diff++;
+						index = i;
+					}
+				}
+				if(diff==1)
+				{
+				System.out.println("case 1 replace ");
+				return true;
+				}
+					
+				if(diff==2 && s.charAt(index)==t.charAt(index-1) && s.charAt(index-1)==t.charAt(index))
+				{
+					System.out.println("case 2 swap ");
+					return true;
+				}	
+				return false;
+				
+				
+			}
+			if(slen==tlen+1)
+			{
+				// first mid last 
+				int i =0, j=0; 
+				int diff =0;
+				// to take care first n last case 
+				if(s.indexOf(t)==0 || s.indexOf(t)==1)
+				{
+					System.out.println("case 3 remove from front or end  ");
+					return true;
+				}
+					
+				while(i<slen)
+				{
+					if(s.charAt(i)==t.charAt(j))
+					{
+						i++;
+						j++;
+					}
+					else {
+						diff++;
+						i++;
+					}
+				}
+				if(diff==1 && j ==tlen && i ==slen)
+				{
+					System.out.println("case 3 remove from mid ");
+					return true;
+				}
+					
+				return false;
+				
+			}
+
+			
+		}
+		return false;
+	}
+	public static void main(String[] args)
+	{
+		
+		String s = "ih";
+		String t ="hi";
+		boolean res = canTransform(s, t );
+		System.out.println(res);
+		
+		
+	}
+}
