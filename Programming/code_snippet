@@ -26,3 +26,31 @@ public class A
 }
 
 //// end of program 
+
+// satrt: same code with string (not char array)
+public class A 
+{
+	public static void print(String s, int st, int len, String res)
+	{
+		if(len ==0)
+		{
+			
+			System.out.println(res);
+			return ;
+			
+		}
+		
+		String res1 = res+s.charAt(st);
+		
+		print(s, st+1, len-1, res1);
+		String res2 = res;
+		print(s, st+1, len-1, res2);
+	}
+
+	public static void main(String [] args)
+	{
+		print("abc",0,  3, "" );
+	}
+}
+
+/// end of code 
