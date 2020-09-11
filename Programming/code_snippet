@@ -120,6 +120,52 @@ public class A
 //////////end 
 
 // start 
+// sort an array ..with recurssion ..(semi recursion )
 
+public class A 
+{
+	public static int [] sort(int [] arr, int len)
+	{
+		if(len==1)
+			return arr;
+		int temp = arr[len-1];
+		int [] arr1= sort(arr, len-1);
+		
+		int [] newarr= new int[len];
+		int i =0, j=0;
+		for(; j<len-1; )
+		{
+			if(arr1[i]<=temp)
+			{
+				newarr[i]= arr1[j];
+				i++;
+				j++;
+			}
+			else 
+				break;
+			
+		}
+		newarr[i]= temp;
+		i++;
+		while(j<len-1)
+		{
+			newarr[i] = arr1[j];
+			i++;
+			j++;
+		}
+		
+		return newarr;
+	}
+	
+	public static void main(String [] args)
+	{
+		System.out.println(Arrays.toString(sort(new int [] {6, 2, 8, 3, 5, 5, 2, 1, 9}, 9  )));
+	}
+}
 /// end 
+
+
+/// start 
+
+// end 
 
