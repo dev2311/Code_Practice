@@ -207,7 +207,7 @@ public class A
 //end 
 
 //// start 
-// reverse a stack 
+// sort a stack (like previous array sorting ) 
 
 public class A 
 {             
