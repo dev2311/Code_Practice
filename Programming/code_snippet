@@ -165,66 +165,7 @@ public class A
 /// end 
 
 
-/// start 
 
-
-public class A 
-{
-	public static int[] insert(int [] arr, int len,  int item)
-	{
-		if(len==0 || arr[len-1]<=item)
-		{
-			int [] newarr= new int[len+1];
-			for(int i =0; i<len; i++)
-			{
-				newarr[i]= arr[i];
-			}
-			newarr[len]= item;
-			return newarr;
-		}
-		//int lenTemp= arr.length;
-		int temp = arr[len-1];
-		int[] newarr = insert(arr, len-1, item);
-		int templen= newarr.length;
-		int [] newtemp = new int[templen+1];
-		for(int i =0; i <templen; i++)
-		{
-			newtemp[i]= newarr[i];
-			
-		}
-		newtemp[templen]= temp;
-		
-		//arr[len-1]= temp;
-		return newtemp;
-		
-		//return null;
-	}
-	public static int [] sort(int [] arr, int len)
-	{
-		if(len==1)
-			return arr;
-		int temp = arr[len-1];
-		int [] arr1= sort(arr, len-1);
-		
-		int [] newarr= new int[len-1];
-		for(int i =0; i<len-1; i++)
-		{
-			newarr[i]= arr1[i];
-		}
-		newarr= insert(newarr, len-1,  temp);
-		return newarr;
-		
-	}
-	
-	public static void main(String [] args)
-	{
-		System.out.println(Arrays.toString(sort(new int [] {6, 2, 8, 3, 5, 5, 2, 1, 9}, 9  )));
-		//System.out.println(Arrays.toString(insert(new int [] {10, 11}, 2,  9  )));
-	}
-}
-
-
-// end 
 
 //start 
 // array sort ..through full recursion 
