@@ -174,20 +174,20 @@ public class A
 {                                  
 	public static void insert(int [] arr, int len,  int item)
 	{
-		if(len==1|| arr[len-2]<=item)
+		if(len==0|| arr[len-1]<=item)
 		{
-			if(len==1)
+			if(len==0)
 			{
 				arr[0]= item;
 				return;
 			}
-			arr[len-1]= item;
+			arr[len]= item;
 			return ;
 		}
 		//int lenTemp= arr.length;
-		int temp = arr[len-2];
+		int temp = arr[len-1];
 		insert(arr, len-1, item);
-		arr[len-1]= temp;
+		arr[len]= temp;
 		return;
 		
 	}
@@ -197,14 +197,14 @@ public class A
 			return ;
 		int temp = arr[len-1];
 		sort(arr, len-1);
-		insert(arr, len,  temp);
+		insert(arr, len-1,  temp);
 	
 	}
 	
 	public static void main(String [] args)
 	{
-		int [] arr = {0, 0, -1, 9, 2, -4};
-		sort(arr, 6);
+		int [] arr = {6, 2, 8, 3, 5, 5, 2, 1, 9};
+		sort(arr, 9);
 		System.out.println(Arrays.toString(arr));
 		
 	}
