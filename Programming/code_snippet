@@ -169,18 +169,12 @@ public class A
 
 //start 
 // array sort ..through full recursion 
-
 public class A 
 {                                  
 	public static void insert(int [] arr, int len,  int item)
 	{
 		if(len==0|| arr[len-1]<=item)
 		{
-			if(len==0)
-			{
-				arr[0]= item;
-				return;
-			}
 			arr[len]= item;
 			return ;
 		}
@@ -203,12 +197,13 @@ public class A
 	
 	public static void main(String [] args)
 	{
-		int [] arr = {6, 2, 8, 3, 5, 5, 2, 1, 9};
+		int [] arr = {-5, 0, 3, 7, -8, 1, 8, 4, -9};
 		sort(arr, 9);
 		System.out.println(Arrays.toString(arr));
 		
 	}
 }
+
 //end 
 
 
