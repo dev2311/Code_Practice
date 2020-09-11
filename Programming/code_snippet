@@ -283,9 +283,63 @@ public class A
 		System.out.println(st);
 	}
 }
-
-
-
 // end 
+
+// start 
+// dele middle element of stack 
+public class A 
+{             
+	public static void del(Stack<Integer> st, int mid)
+	{
+		if(st.size()==mid)
+		{
+			st.pop();
+			return; 
+	
+		}
+		int temp = st.pop();
+		del(st, mid);
+		st.push(temp);
+		return ;
+	}
+	public static void main(String [] args)
+	{
+		Stack<Integer> st = new Stack<>();
+		st.push(-5); st.push(0); 
+		st.push(3); st.push(7); st.push(-8); st.push(1);
+		st.push(8); st.push(4); st.push(-9);st.push(18);
+		int mid = (st.size()+1)/2;
+		
+		System.out.println(st);
+		del(st, mid);
+		System.out.println(st);
+	}
+}
+///end 
+
+// start 
+// generate grammer n find digit at a particular position 
+//https://www.youtube.com/watch?v=5P84A0YCo_Y&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY&index=10
+public class A 
+{             
+	public static int find(int n, int k)
+	{
+		
+		if(n==1 && k ==1)
+			return 0;
+		int mid =( (int)Math.pow(2, n-1))/2;// 8 4...4 2... 2 1...
+		if(k<=mid)
+			return find(n-1, k);//1 
+		else 
+			return ~find(n-1, k-mid);// 2 3 
+	}
+	public static void main(String [] args)
+	{
+		int x = find(4, 8)==0?0:1; //01101001
+		System.out.println(x);
+	}
+}
+
+///end 
 
 
