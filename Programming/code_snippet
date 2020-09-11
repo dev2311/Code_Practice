@@ -1,3 +1,9 @@
+Recursion : 
+	1. reduce the given input till a base condition 
+	2. draw a recursive tree with given input n desired out..where input will decrease n output will increase ...and end will happen at the leaf node 
+	where we get a proper output of disired ones.
+	3. tree may be a choice diagram too 
+
 // start 
 //print all subset of a given string/ power set
 public class A 
@@ -54,3 +60,66 @@ public class A
 }
 
 /// end of code 
+
+// 10 to 1
+public class A 
+{
+
+	public static void print(int num)
+	{
+		if(num==0)
+			return;
+		
+		System.out.println(num);
+		print(num-1);
+	}
+
+	public static void main(String [] args)
+	{
+		print(10);
+	}
+}
+/////
+///
+//1 to 10 
+
+
+public class A 
+{
+	public static void print(String s, int st, int len, String res)
+	{
+		if(len ==0)
+		{
+			
+			System.out.println(res);
+			return ;
+			
+		}
+		
+		String res1 = res+s.charAt(st);
+		
+		print(s, st+1, len-1, res1);
+		String res2 = res;
+		print(s, st+1, len-1, res2);
+	}
+	
+	public static void print(int num)
+	{
+		if(num==0)
+			return;
+		print(num-1);
+		System.out.println(num);
+	}
+
+	public static void main(String [] args)
+	{
+		print(10);
+	}
+}
+
+//////////end 
+
+// start 
+
+/// end 
+
