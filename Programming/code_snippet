@@ -263,12 +263,12 @@ public class A
 		return ;
 	}
 	
-	public static void sort(Stack<Integer>st )
+	public static void rev(Stack<Integer>st )
 	{
 		if(st.size()<=1)
 			return; 
 		int temp = st.pop();
-		sort(st);
+		rev(st);
 		insert(st, temp);
 		return;
 	}
@@ -279,10 +279,11 @@ public class A
 		st.push(3); st.push(7); st.push(-8); st.push(1);
 		st.push(8); st.push(4); st.push(-9);
 		System.out.println(st);
-		sort(st);
+		rev(st);
 		System.out.println(st);
 	}
 }
+
 
 
 // end 
