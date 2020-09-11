@@ -206,4 +206,48 @@ public class A
 
 //end 
 
+//// start 
+// reverse a stack 
+
+public class A 
+{             
+	public static void insert(Stack<Integer> st, int item)
+	{
+		if(st.size()==0 || st.peek()<=item)
+		{
+			st.push(item);
+			return ;
+		}
+		int top = st.pop();
+		insert(st,  item);
+		st.push(top);
+		return ;
+	}
+	
+	public static void sort(Stack<Integer>st )
+	{
+		if(st.size()<=1)
+			return; 
+		int temp = st.pop();
+		sort(st);
+		insert(st, temp);
+		return;
+	}
+	public static void main(String [] args)
+	{
+		Stack<Integer> st = new Stack<>();
+		st.push(-5); st.push(0); 
+		st.push(3); st.push(7); st.push(-8); st.push(1);
+		st.push(8); st.push(4); st.push(-9);
+		System.out.println(st);
+		sort(st);
+		System.out.println(st);
+	}
+}
+//// end 
+
+// start
+
+// end 
+
 
