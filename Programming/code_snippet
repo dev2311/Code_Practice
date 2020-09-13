@@ -374,6 +374,34 @@ public class  A
 }
 ///end 
 
+// start 
+// one more way to print all subset
+public class  A 
+{      
+	public static void printAll(String in , String op)
+	{
+		if(in.length()==0)
+		{
+			System.out.println(op);
+			return;
+		}
+		
+		String op1 = op+in.charAt(0);
+		String op2 = op;
+		printAll(in.substring(1), op1);
+		printAll(in.substring(1), op2);
+		
+	}
+	public static void main(String [] args)
+	{
+		String in = "abc";
+		String op = "";
+		printAll(in, op );
+	}
+}
+
+// end 
+
 
 
 
