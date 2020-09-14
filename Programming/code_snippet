@@ -400,7 +400,37 @@ public class  A
 	}
 }
 
+// end public class  A 
+{      
+	public static void printAll(String in , String op,  Set<String> st )
+	{
+		if(in.length()==0)
+		{
+			System.out.println(op);
+			return;
+		}
+		
+		String op1 = op+in.charAt(0);
+		String op2 = op+String.valueOf(in.charAt(0)).toUpperCase();
+		printAll(in.substring(1), op1, st);
+		printAll(in.substring(1), op2, st);
+		
+	}
+	public static void main(String [] args)
+	{
+		String in = "ab";
+		String op = "";
+		Set<String> st = new HashSet<>();
+		printAll(in, op, st );
+	}
+}
+
 // end 
+
+
+// start 
+// printing string permutatio upper lower case 
+
 
 
 
