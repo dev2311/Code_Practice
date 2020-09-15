@@ -123,3 +123,41 @@ public class  A
 }
 // end 
 
+// start 
+// another way to find dup n missing ... "using index method"
+public class  A 
+{    
+	
+	public static void method3(int [] arr)
+	{
+		for(int i =0; i<arr.length; i++)
+		{
+			int temp = arr[Math.abs(arr[i])-1];
+			if(temp<0)
+			{
+				System.out.println("dup: "+ -temp);
+			}
+			else {
+				
+				arr[Math.abs(arr[i])-1] = - temp;
+			}
+		}
+		System.out.println(Arrays.toString(arr));
+		
+		for(int i =0 ; i< arr.length; i++)
+		{
+			if(arr[i]>0)
+			{
+				System.out.println("missing: " + (i+1));
+			}
+		}
+	}
+	public static void main(String [] args)
+	{
+		int [] arr = {2, 3, 1, 8, 2, 3, 5, 1};
+		method3(arr);
+		
+	}
+}
+// end 
+
