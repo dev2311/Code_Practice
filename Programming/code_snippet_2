@@ -83,3 +83,43 @@ public class  A
 }
 
 // end 
+
+// start 
+// finding multiple missing n duplicates in a range 
+public class  A 
+{    
+	
+	public static void method3(int [] arr)
+	{
+		for(int i = 0; i<arr.length; i++)
+		{
+			//int num = arr[arr[i]];
+			while(arr[i]!=i+1)
+			{
+				
+				if(arr[arr[i]-1]== arr[i])
+					break;
+				int temp = arr[arr[i]-1];
+				arr[arr[i]-1]= arr[i];
+				arr[i]= temp;
+			}
+		}
+		System.out.println(Arrays.toString(arr));
+		for(int i =0; i<arr.length; i++)
+		{
+			if(arr[i]!=i+1)
+			{
+				System.out.println("dup: "+ arr[i]);
+				System.out.println("mis: "+ (i+1));
+			}
+		}
+	}
+	public static void main(String [] args)
+	{
+		int [] arr = {2, 3, 1, 8, 2, 3, 5, 1};
+		method3(arr);
+		
+	}
+}
+// end 
+
