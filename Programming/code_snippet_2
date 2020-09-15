@@ -160,4 +160,192 @@ public class  A
 	}
 }
 // end 
+// start 
+// rec binary search 
+public class  A 
+{    
+	
+
+	public static int bSearchUtil(int [] arr, int st, int en, int key)
+	{
+		if(st<=en)
+		{
+			int mid = st+(en-st)/2;
+			if(arr[mid]==key)
+				return mid;
+			if(arr[mid]>key)
+				return bSearchUtil(arr, st, mid-1, key);
+			else return bSearchUtil(arr, mid+1, en, key);
+		}
+		else 
+		return -1;
+	}
+	public static void bSearch(int [] arr, int key)
+	{
+		int pos = bSearchUtil(arr, 0, arr.length-1, key);
+		System.out.println(pos);
+	}
+	public static void main(String [] args)
+	{
+		int [] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		bSearch(arr, 10);
+		
+		
+	}
+}
+// end 
+//start 
+// binary search in descending array 
+public class  A 
+{  
+	public static int revBSearchUtil(int [] arr, int st, int en, int key)
+	{
+		if(st<=en)
+		{
+			int mid = st+(en-st)/2;
+			if(arr[mid]==key)
+				return mid;
+			if(arr[mid]>key)
+				return revBSearchUtil(arr, mid+1, en, key);
+			else return revBSearchUtil(arr, st, mid-1, key);
+		}
+		else 
+		return -1;
+	}
+	public static void revBSearch(int [] arr, int key)
+	{
+		int pos = revBSearchUtil(arr, 0, arr.length-1, key);
+		System.out.println(pos);
+	}
+	public static void main(String [] args)
+	{
+		int [] arr = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+		revBSearch(arr, 0);
+		
+		
+	}
+}
+//end 
+
+//start 
+//bs order agnostic 
+public class  A 
+{  
+	public static int revBSearchUtil(int [] arr, int st, int en, int key, boolean flag)
+	{
+		if(st<=en)
+		{
+			int mid = st+(en-st)/2;
+			if(arr[mid]==key)
+				return mid;
+			if(flag==false)
+			{
+				if(arr[mid]>key)
+					return revBSearchUtil(arr, mid+1, en, key, flag);
+				else return revBSearchUtil(arr, st, mid-1, key, flag);
+			}
+			else {
+				
+				if(arr[mid]>key)
+					return revBSearchUtil(arr, st, mid-1, key, flag);
+				else return revBSearchUtil(arr, mid+1, en, key, flag);
+			}
+			
+		}
+		else 
+		return -1;
+	}
+	public static void revBSearch(int [] arr, int key)
+	{
+		boolean flag = false;
+		if(arr[0]<arr[1])
+			flag= true;
+		int pos = revBSearchUtil(arr, 0, arr.length-1, key, flag);
+		System.out.println(pos);
+	}
+	public static void main(String [] args)
+	{
+		int [] arr = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+		int [] arr2 = {1, 2, 3, 4, 5, 6, 7, 8, 9,10};
+		revBSearch(arr2, 9 );
+		
+		
+	}
+}
+//end 
+
+// start 
+// first n last occurence of a element 
+public class  A 
+{  
+	public static int revBSearchUtil(int [] arr, int st, int en, int key)
+	{
+		if(st<=en)
+		{
+			int mid = st+(en-st)/2;
+			if(arr[mid]==key)
+				return mid;
+			if(arr[mid]>key)
+				return revBSearchUtil(arr, st, mid-1, key);
+			else return revBSearchUtil(arr, mid+1, en, key);
+		}else 
+		return -1;
+	}
+	
+	public static int revBSearchUtilFirst(int []arr, int st, int en, int key)
+	{
+		//int mid = st+en-st)/2
+		if(st<=en)
+		{
+			int mid = st+(en-st)/2;
+			if(arr[mid]== key && mid==0)
+				return mid;
+			if(arr[mid]==key && mid>0 && arr[mid-1]<key)
+				return mid;
+			if(arr[mid]<key)
+				return revBSearchUtilFirst(arr, mid+1, en,  key);
+		}
+		return st;
+	}
+	public static int revBSearchUtilLast(int []arr, int st, int en, int key)
+	{
+		if(st<=en)
+		{
+			int mid = st+(en-st)/2;
+			if(arr[mid]== key && mid==en)
+				return mid;
+			if(arr[mid]==key && mid<en && arr[mid+1]>key)
+				return mid;
+			if(arr[mid]>key)
+				return revBSearchUtilFirst(arr, st, mid-1,  key);
+		}
+		return en;
+	}
+	public static void revBSearch(int [] arr, int key)
+	{
+		
+		int pos = revBSearchUtil(arr, 0, arr.length-1, key);
+		//System.out.println("pos: "+ pos);
+		if(pos!=-1)
+		{
+			int first = revBSearchUtilFirst(arr, 0, pos, key);
+			int last  = revBSearchUtilLast(arr, pos, arr.length-1, key);
+			System.out.println("first:"+first+" - "+ "last:"+last );
+			
+		}
+		//System.out.println(pos);
+	}
+	public static void main(String [] args)
+	{
+		//int [] arr = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+		int [] arr2 = {1, 2, 3, 4, 4, 4, 4, 8, 9,10};
+		revBSearch(arr2, 4 );
+		
+		
+	}
+}
+// end 
+
+
+
 
