@@ -400,7 +400,11 @@ public class  A
 	}
 }
 
-// end public class  A 
+// end 
+
+/ start 
+// printing string permutatio upper lower case 
+public class  A 
 {      
 	public static void printAll(String in , String op,  Set<String> st )
 	{
@@ -427,9 +431,81 @@ public class  A
 
 // end 
 
+// start 
+// printing paranthesis in correct format all permutation 
+public class  A 
+{      
+	public static void printAll(int op , int  cl,  String  res )
+	{
+		if(op==0 && cl ==0)
+		{
+			System.out.println(res);
+			return ;
+		}
+		
+		String ot1 ="";
+		String ot2 ="";
+	
+		if(op>0)
+		{
+			ot1 = res+"(";
+			// dont use > op = op-1; or printAll( --op , cl,  ot1 );... bcz it will change op's value for second if condition 
+			printAll( op-1 , cl,  ot1 );
+			//return;
+		}
+		
+		 if (op<cl)
+		 {
+				ot2 = res+")";
+				printAll( op , cl-1,  ot2 );
+		}
+		
+			
+		
+	}
+	
+	public static void main(String [] args)
+	{
+		String res="";
+		printAll(2, 2, res );
+	}
+}
+
+///end 
 
 // start 
-// printing string permutatio upper lower case 
+// Print N-bit binary numbers having more 1’s than 0’s for any prefix
+public class  A 
+{      
+	public static void printAll(int len , int  one, int zero,   String  res )
+	{
+		if(len==0)
+		{
+			System.out.println(res);
+			return ;
+		}
+
+		String ot1 ="";
+		ot1 = res+"1";
+		printAll( len-1 , one+1, zero,   ot1 );
+
+		if (one>zero)
+		{
+			String ot2 ="";
+			ot2 = res+"0";
+			printAll( len-1 , one, zero+1,   ot2 );
+		}
+	}
+
+	public static void main(String [] args)
+	{
+		String res="";
+		printAll(3, 0, 0,  res );
+	}
+}
+
+// end 
+
 
 
 
