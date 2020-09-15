@@ -346,6 +346,63 @@ public class  A
 }
 // end 
 
+// start 
+// finding rotation length in a array 
+
+public class  A 
+{  
+	
+	public static int findMinIndex(int [] arr, int st , int en)
+	{
+		if(st ==en )
+			return st;
+		if(st<en)
+		{
+			System.out.println(st+"  "+ en);
+			int mid = st+(en-st)/2;
+			if(mid>st && arr[mid]<arr[mid-1])
+				return mid;
+			if(mid<en && arr[mid]>arr[mid+1])
+				return mid+1;
+			
+			
+			
+			if(mid>st && arr[st]>arr[mid])
+				return findMinIndex(arr, st , mid-1);
+			if(mid<en && arr[mid]>arr[en])
+				return findMinIndex(arr, mid+1 ,en);
+			
+				
+		}
+		
+		return -1;
+	}
+	public static int rotationSize(int []arr)
+	{
+		if(arr.length==1)
+			return 0;
+		if(arr[0]<arr[arr.length-1])
+		{
+			System.out.println("unrotated array ");
+			return 0;
+		}
+		int index = findMinIndex(arr, 0, arr.length-1);
+		
+			System.out.println("index "+ index);
+			return arr.length-1-index+1;
+		
+		
+	}
+	public static void main(String [] args)
+	{
+		int [] arr = {5, 6, 7, 8, 9, 10, 1, 2, 3, 4};
+		
+		System.out.println("rotation size: "+ rotationSize(arr));
+		
+		
+	}
+}
+// end 
 
 
 
