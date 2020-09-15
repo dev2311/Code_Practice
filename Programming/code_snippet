@@ -3,6 +3,7 @@ Recursion :
 	2. draw a recursive tree with given input n desired out..where input will decrease n output will increase ...and end will happen at the leaf node 
 	where we get a proper output of disired ones.
 	3. tree may be a choice diagram too 
+	
 
 // start 
 //print all subset of a given string/ power set
@@ -505,6 +506,86 @@ public class  A
 }
 
 // end 
+
+// start 
+//Josephus Problem | Game of Death in a circle | Execution in Circle
+// two ways ..rec n loop 
+public class  A 
+{    
+	public static void solve(int num, int distance)
+	{
+		
+		int [] arr = new int [num];
+		int current = num;
+		int i =0;
+		int res= -1;
+		while(current!=1)
+		{
+			int count =0;
+			int j =0;
+			while(count!=distance)
+			{
+				i= i%num;
+				if(arr[i]==0)
+				{
+					count++;
+					j =i;
+				}
+					
+				i++;
+			}
+			arr[j]=-1;
+			current--;
+			//res = j+1;
+		}
+		for(int x=0; x<arr.length; x++ )
+		{
+			if(arr[x]==0)
+			{
+				res = x+1;
+				break;
+			}
+		}
+		System.out.println(Arrays.toString(arr));
+		System.out.println("res "+res);
+	}
+	
+	public static void recSolve(ArrayList<Integer>al, int sword, int distance )
+	{
+		
+		if(al.size()==1)
+		{
+			System.out.println(al.get(0));
+			return;
+		}
+		
+		int killIndex= (sword+distance)%al.size();
+		al.remove(killIndex);
+		sword = (killIndex)%al.size();
+		recSolve(al, sword, distance );
+		
+	}
+	public static void main(String [] args)
+	{
+		int num=3;
+		int distance=2;
+		//solve(num, distance);
+		 num=40;
+		 distance=7;
+		//solve(num, distance);
+		
+		// another way 
+		ArrayList<Integer> al = new ArrayList<Integer>();
+		for(int i =1; i<=num; i++)
+		{
+			al.add(i);
+		}
+		int index =0, sword=0; 
+		recSolve(al, sword, distance-1 );
+		
+	}
+}
+//end 
 
 
 
