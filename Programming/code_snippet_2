@@ -1,0 +1,85 @@
+// start 
+// find one missing n one duplicate 
+public class  A 
+{    
+	public static void solve(int [] arr)
+	{
+		int n = arr.length;
+		int res=0;
+		for(int i=1; i<=n;i++)
+		{
+			res = res ^i;
+			res = res ^ arr[i-1];
+		}
+		// find first set bit 
+		//int k =1;
+		int pos=0;
+		while((res & 1<<pos)==0)
+		{
+			pos++;
+			//k = 1 <<pos;
+		}
+		//System.out.println(res);
+		int num1= 0;
+		int num2 =0;
+		for(int i =1 ; i<=n; i++)
+		{
+			if((i & (1<<pos))==0)
+				num1 = num1 ^ i;
+			else num2 = num2 ^ i;
+				
+		}
+		for(int i =0; i<n; i++)
+		{
+			if((arr[i] & 1<<pos)==0)
+				num1 = num1^ arr[i];
+			else 
+				num2 = num2 ^ arr[i];
+		}
+		
+		System.out.println(num1+"  "+ num2);
+		
+	}
+	
+	public static void method2(int [] arr )
+	{
+		int n = arr.length;
+		int actualSum = 0 ;
+		int givenSum= 0;
+		for(int i =0; i<n; i++)
+		{
+			actualSum = actualSum+i+1;
+			givenSum = givenSum+arr[i];
+			
+		}
+		// missing m, duplicate d 
+		int m=0, d=0;
+		int sub = actualSum - givenSum; //m-d
+		
+		//System.out.println(sub);
+		actualSum= 0;
+		givenSum= 0;
+		for(int i =0; i<n; i++)
+		{
+			actualSum = actualSum+ (int)Math.pow(i+1, 2);
+			givenSum = givenSum+ (int)Math.pow(arr[i], 2);
+			
+		}
+		int div= actualSum - givenSum;
+		//System.out.println(div+" div");
+		int sum = div/sub; // m+d
+		//System.out.println(sum);
+		int mm = (sub+sum)/2;
+		int dd= sum-mm;
+		System.out.println(mm+" "+dd);
+	}
+	public static void main(String [] args)
+	{
+		int [] arr = {1, 2, 4, 4, 7, 5, 6, 8};
+		solve(arr);
+		method2(arr);
+		
+	}
+}
+
+// end 
