@@ -222,3 +222,136 @@ public class  A
 }
 
 // end 
+
+// start 
+// Max Area Rectangle in binary matrix
+
+public class  A 
+{  
+	
+	public static int  histogram(int [] arr)
+	{
+		int []minLeft = new int [arr.length];
+		int []minRight = new int [arr.length];
+		
+		Stack<Integer> st = new Stack<>();
+		for(int i =0; i<arr.length; i++)
+		{
+			
+			while(!st.isEmpty())
+			{
+				if(arr[st.peek()]>=arr[i])
+				{
+					st.pop();
+				}
+				else 
+				{
+					minLeft[i]= st.peek();
+					st.push(i);
+					break;
+				}
+			}
+			if(st.isEmpty())
+			{
+				minLeft[i] = -1;
+				st.push(i);
+			}
+		}
+		
+		//System.out.println(Arrays.toString(minLeft));
+		st.clear();
+		for(int i =arr.length-1; i>=0; i--)
+		{
+			
+			while(!st.isEmpty())
+			{
+				if(arr[st.peek()]>=arr[i])
+				{
+					st.pop();
+				}
+				else 
+				{
+					minRight[i]= st.peek();
+					st.push(i);
+					break;
+				}
+			}
+			if(st.isEmpty())
+			{
+				minRight[i] = arr.length;
+				st.push(i);
+			}
+		}
+		
+		//System.out.println(Arrays.toString(minRight));
+		
+		int res=0;
+		int current= 0;
+		int left=-1, right=-1;
+		for(int i =0; i<arr.length; i++)
+		{
+			current = arr[i];
+			if(minLeft[i]==-1)
+				current = current + (i* arr[i]);
+			else current = current + ((i-minLeft[i]-1)* arr[i]);
+			
+			if(minRight[i]==arr.length)
+				current = current +(arr.length-i-1)*arr[i];
+			else current = current +(minRight[i]-i-1)*arr[i];
+			
+			if(current>res)
+			{
+				res = current ;
+				left = minLeft[i]+1;
+				right= minRight[i]-1;
+			}
+				
+		}
+		//System.out.println("res "+res+"   left n right "+ left +" "+ right );
+		return res;
+	}
+	public static void MatrixHistogram(int [][] arr)
+	{
+		int [] arrOne = new int [arr[0].length];
+		
+		for(int i =0; i<arrOne.length; i++)
+		{
+			arrOne[i]= arr[0][i];
+		}
+		
+		int max = histogram(arrOne);
+		
+		for(int i =1; i<arr.length; i++)
+		{
+			for(int j =0; j<arrOne.length; j++)
+			{
+				if(arr[i][j]==1)
+				{
+					arrOne[j]+=1;
+				}
+				else
+				{
+					arrOne[j]=0;
+				}
+			}
+			
+			max = Math.max(max, histogram(arrOne));
+		}
+		
+		System.out.println(max);
+		
+	}
+	
+	public static void main(String [] args)
+	{
+		int [] arr = {6, 2, 5, 4, 5, 1, 6};
+		int [] arr2 = {1, 3, 0, 0, 1, 2, 4};
+		int [][] arr3 = {{0, 1 ,1, 0}, {1, 1, 1, 1}, {1, 1, 1, 1}, {1, 1, 0, 0}};
+		MatrixHistogram(arr3);
+		
+		//histogram(arr);
+		
+	}
+}
+
+//end 
