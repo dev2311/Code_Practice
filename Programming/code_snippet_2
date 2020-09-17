@@ -403,6 +403,85 @@ public class  A
 	}
 }
 // end 
+// start 
+// Allocate Minimum Number Of Pages: https://www.youtube.com/watch?v=2JSQIhPcHQg&list=PL_z_8CaSLPWeYfhtuKHj-9MpYb6XQJ_f2&index=21
+
+public class  A 
+{  
+	
+	public static int ans=0;
+	
+	public static boolean isValid(int [] arr, int max, int k)
+	{
+		int currentK= 1; 
+		int currentSum =0;
+		for(int i =0; i<arr.length; i++)
+		{
+			currentSum = currentSum+arr[i];
+			if(currentSum>max)
+			{
+				currentK++;
+				currentSum=arr[i];
+				
+			}
+			if(currentK>k)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	public static void search(int [] arr, int st, int en, int k)
+	{
+		if(st<=en)
+		{
+			int mid = st+(en-st)/2;
+			if(isValid(arr, mid, k))
+			{
+				ans = mid;
+				en  = mid-1;
+			}
+			else 
+			{
+				st = mid+1;
+			}
+			search(arr, st,en, k);
+			
+		}
+		//return -1;
+	}
+	
+	public static int maxDistibution(int [] arr, int k)
+	{
+		int maxElement= Integer.MIN_VALUE;
+		int sumArray=0;
+		if(k>arr.length)
+			return -1;
+		for(int x: arr)
+		{
+			sumArray = sumArray+x;
+			if(x>maxElement)
+				maxElement= x;
+		}
+		if(k == arr.length)
+		{
+			return maxElement;
+		}
+		ans = maxElement;
+		search(arr, maxElement,sumArray, k );
+		return ans;
+			 //max element in array 
+	}
+	
+	public static void main(String [] args)
+	{
+		int [] arr = {10, 20, 30, 40};
+		int k =2;
+		System.out.println(maxDistibution(arr, k));
+	}
+}
+
+//end 
 
 
 
