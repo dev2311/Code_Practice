@@ -82,3 +82,143 @@ public class  A
 	}
 }
 //end 
+
+// strat 
+// stock span problem 
+public class  A 
+{  
+	
+	public static void stockSpan(int []arr)
+	{
+		
+		int []  res = new int[arr.length];
+		Stack<Integer> st = new Stack<>();
+		
+		for(int i =0; i <arr.length; i++)
+		{
+			while(!st.isEmpty())
+			{
+				if(arr[st.peek()]<=arr[i])
+				{
+					st.pop();
+				}
+				else 
+				{
+					res[i]= i- st.peek();
+					st.push(i);
+					break;
+				}
+			}
+			if(st.isEmpty())
+			{
+				st.push(i);
+				res[i]=i+1;
+			}
+		}
+		System.out.println(Arrays.toString(res));
+	}
+	public static void main(String [] args)
+	{
+		int [] arr = {100, 80, 60, 70, 60, 75, 85};
+		int [] arr2 = {1, 3, 0, 0, 1, 2, 4};
+		stockSpan(arr);
+		
+	}
+}
+// end 
+// strat 
+// Maximum Area Histogram
+
+public class  A 
+{  
+	
+	public static void histogram(int [] arr)
+	{
+		int []minLeft = new int [arr.length];
+		int []minRight = new int [arr.length];
+		
+		Stack<Integer> st = new Stack<>();
+		for(int i =0; i<arr.length; i++)
+		{
+			
+			while(!st.isEmpty())
+			{
+				if(arr[st.peek()]>=arr[i])
+				{
+					st.pop();
+				}
+				else 
+				{
+					minLeft[i]= st.peek();
+					st.push(i);
+					break;
+				}
+			}
+			if(st.isEmpty())
+			{
+				minLeft[i] = -1;
+				st.push(i);
+			}
+		}
+		
+		System.out.println(Arrays.toString(minLeft));
+		st.clear();
+		for(int i =arr.length-1; i>=0; i--)
+		{
+			
+			while(!st.isEmpty())
+			{
+				if(arr[st.peek()]>=arr[i])
+				{
+					st.pop();
+				}
+				else 
+				{
+					minRight[i]= st.peek();
+					st.push(i);
+					break;
+				}
+			}
+			if(st.isEmpty())
+			{
+				minRight[i] = arr.length;
+				st.push(i);
+			}
+		}
+		
+		System.out.println(Arrays.toString(minRight));
+		
+		int res=0;
+		int current= 0;
+		int left=-1, right=-1;
+		for(int i =0; i<arr.length; i++)
+		{
+			current = arr[i];
+			if(minLeft[i]==-1)
+				current = current + (i* arr[i]);
+			else current = current + ((i-minLeft[i]-1)* arr[i]);
+			
+			if(minRight[i]==arr.length)
+				current = current +(arr.length-i-1)*arr[i];
+			else current = current +(minRight[i]-i-1)*arr[i];
+			
+			if(current>res)
+			{
+				res = current ;
+				left = minLeft[i]+1;
+				right= minRight[i]-1;
+			}
+				
+		}
+		System.out.println("res "+res+"   left n right "+ left +" "+ right );
+	}
+	public static void main(String [] args)
+	{
+		int [] arr = {6, 2, 5, 4, 5, 1, 6};
+		int [] arr2 = {1, 3, 0, 0, 1, 2, 4};
+		histogram(arr);
+		
+	}
+}
+
+// end 
