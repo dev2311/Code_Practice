@@ -31,8 +31,13 @@ public class  A
 			char second = str.charAt(st+1);
 			int numtwo = Character.getNumericValue(second);
 			int total = numOne * 10 + numtwo;
-			String OutTwo = out+(char)(total-1+'a');
-			printUtil( str, st+2, OutTwo);
+			if(total>0 && total<=26) {
+				String OutTwo = out+(char)(total-1+'a');
+				printUtil( str, st+2, OutTwo);
+			}
+			else 
+				return ;
+			
 			
 		}
 		
@@ -47,7 +52,7 @@ public class  A
 	}
 	public static void main(String [] args)
 	{
-		printAll("121");
+		printAll("36");
 		System.out.println("next test case ");
 		printAll("1201");
 		System.out.println("next test case ");
@@ -56,14 +61,16 @@ public class  A
 		
 	}
 }
-///output: result: aba
-result: au
-result: la
+
+output:
+result: cf
 next test case 
 result: ata
 next test case 
 result: abj
 result: lj
+
+
 
 //end 
 
