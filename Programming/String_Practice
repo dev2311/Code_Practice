@@ -1,0 +1,70 @@
+// start 
+// print all possible string from a given number :
+public class  A 
+{  
+	// 121: aba au, la 
+	// think when it is 0 in mid 
+	// 1201: so in this case 0 can't go alone ..it has to combined with previous number digit 
+	// and the previous number digit can be 1 or 2 ...bcz need to keep it less than 26 
+	// 1201: ata
+	
+
+	public static void printUtil( String str, int st, String out)
+	{
+		if(st ==str.length())
+		{
+			System.out.println("result: "+out);
+			return ;
+		}
+		char first = str.charAt(st);
+		if(first=='0')
+			return ;
+		int numOne = Character.getNumericValue(first);
+		//System.out.println("numeric value: "+ numOne);
+		String OutOne = out+(char)(numOne-1+'a');
+		//System.out.println("out: "+ out);
+		printUtil( str, st+1, OutOne);
+		
+		if(str.substring(st).length()>1)
+		{
+			 
+			char second = str.charAt(st+1);
+			int numtwo = Character.getNumericValue(second);
+			int total = numOne * 10 + numtwo;
+			String OutTwo = out+(char)(total-1+'a');
+			printUtil( str, st+2, OutTwo);
+			
+		}
+		
+	}
+
+	public static void printAll(String str)
+	{
+		if(str.length()==0)
+			 return ;
+		String out = "";
+		printUtil(str, 0, out);
+	}
+	public static void main(String [] args)
+	{
+		printAll("121");
+		System.out.println("next test case ");
+		printAll("1201");
+		System.out.println("next test case ");
+		printAll("1210");
+		
+		
+	}
+}
+///output: result: aba
+result: au
+result: la
+next test case 
+result: ata
+next test case 
+result: abj
+result: lj
+
+//end 
+
+// start 
