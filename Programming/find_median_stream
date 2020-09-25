@@ -1,0 +1,54 @@
+// start 
+// find median : o(n2) algo ..using insert sort concept 
+//https://www.geeksforgeeks.org/median-of-stream-of-integers-running-integers/
+public class  A 
+{  
+	
+	public static int findMedian(ArrayList<Integer> al, int num)
+	{
+		int i =0; 
+		while(i<al.size())
+		{
+			if(al.get(i)>num)
+			{
+				al.add(i, num);
+				break;
+			}
+				//al.add(i, num);
+			else i++;
+		}
+		if(i==al.size())
+			al.add(num);
+		int size = al.size();
+		int median=0;
+		if(size%2==0)
+		{
+			median = 	(al.get(size/2) + al.get(size/2-1))/2;
+		}
+		else 
+		{
+			median = al.get(size/2);
+		}
+		return median;
+	}
+	public static void main(String [] args)
+	{
+		ArrayList<Integer> al = new ArrayList<>();
+		
+		Scanner sc = new Scanner(System.in);
+		String str ; 
+		while(true)
+		{
+			str = sc.next();
+			if(str.equals("N") ||str.equals("n") )
+				break;
+			int num = Integer.parseInt(str);
+			int median= findMedian(al, num);
+			System.out.println(median);
+		}
+		
+		
+	}
+}
+
+// end 
