@@ -52,3 +52,107 @@ public class  A
 }
 
 // end 
+
+// start 
+// find median ..using heap/priority queue in java 
+//https://www.geeksforgeeks.org/median-of-stream-of-running-integers-using-stl/
+
+public class  A 
+{  // here we are giving answer in double ..instead of this we acn use int also if it is fine 
+	// to lose of precision just ot keep it simple 
+	public static double findMedian(PriorityQueue<Integer> leftPq, PriorityQueue<Integer> rightPq,  int key)
+	{
+		int leftSize = leftPq.size();
+		int rightSize = rightPq.size();
+		int leftpeek= 0;
+		int rightpeek=0;
+		
+		if(leftSize==rightSize)
+		{
+			
+			  if(leftSize==0)// starting condition 
+			  { 
+				  leftPq.add(key); 
+				  return key; 
+			  }
+			 
+			leftpeek= leftPq.peek();
+			rightpeek= rightPq.peek();
+			if(key<=leftpeek)
+			{
+				leftPq.add(key);
+				return leftPq.peek();
+				
+			}
+			else {
+				rightPq.add(key);
+				return rightPq.peek();
+				
+			}
+			
+				
+		}
+		else if(leftSize>rightSize)
+		{
+			leftpeek= leftPq.peek();
+			//rightpeek= rightPq.peek();
+			if(key<leftpeek)
+			{
+				rightPq.add(leftPq.poll());
+				leftPq.add(key);
+				return (leftPq.peek() + rightPq.peek() ) /2.0;
+				
+			}
+			else {
+				rightPq.add(key);
+				return (leftPq.peek() + rightPq.peek() ) /2.0;
+				
+			}
+			
+			
+		}
+		else //leftSize<rightSize
+		{
+			leftpeek= leftPq.peek();
+			rightpeek= rightPq.peek();
+			if(key<leftpeek)
+			{
+				//rightPq.add(leftPq.poll());
+				leftPq.add(key);
+				return (leftPq.peek() + rightPq.peek() ) /2.0;
+				
+			}
+			else {
+				leftPq.add(rightPq.poll());
+				rightPq.add(key);
+				return (leftPq.peek() + rightPq.peek() ) /2.0;
+				
+			}
+		}
+		
+		//return 0;
+	}
+	
+	public static void main(String [] args)
+	{
+		PriorityQueue<Integer> leftPq= new PriorityQueue<Integer>(Collections.reverseOrder());
+		PriorityQueue<Integer> rightPq= new PriorityQueue<Integer>();
+		//leftPq.add(0);
+		//rightPq.add(0);
+		
+		Scanner sc = new Scanner(System.in);
+		String str ; 
+		while(true)
+		{
+			str = sc.next();
+			if(str.equals("N") ||str.equals("n") )
+				break;
+			int num = Integer.parseInt(str);
+			double median= findMedian(leftPq,rightPq,  num);
+			System.out.println(median);
+		}
+		
+		
+	}
+}
+// end 
