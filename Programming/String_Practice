@@ -1,4 +1,50 @@
 // start 
+// print all permutation of a string 
+public  class Solve
+{
+	public static void swap(char [] arr, int one,int two)
+	{
+		char temp = arr[one];
+		arr[one]= arr[two];
+		arr[two]= temp;
+	}
+	  public static void printAll(char []arr, int st, int en)
+	  {
+		if(st==en)
+		{
+			System.out.println(Arrays.toString(arr));
+			return ; 
+		}
+		for(int i =st; i<=en; i++)
+		{
+			swap(arr, st, i);
+			printAll(arr,  st+1,  en);
+			swap(arr, st, i);
+			
+			
+		}
+		
+	  }
+	    public static void main (String[] args) 
+	    { 
+	  
+	    	char [] arr = {'a', 'b', 'c'};
+	    	//int k = 3;
+	    	//String res = "";
+	    	printAll(arr, 0, 2);
+	    }
+}
+// output: [a, b, c]
+[a, c, b]
+[b, a, c]
+[b, c, a]
+[c, b, a]
+[c, a, b]
+
+
+// end 
+
+// start 
 // print all possible string from a given character set of a fixed length 
 public  class Solve
 {
