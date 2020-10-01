@@ -1,3 +1,44 @@
+// start 
+// https://www.geeksforgeeks.org/maximum-difference-between-two-elements/
+// or stock buy sell ..max profit ..when we can buy/sell once 
+public  class Solve
+{
+	public static void findMaxProfit(int [] arr)
+	{
+		if(arr.length==1)
+		{
+			System.out.println("not sufficient data");
+			return;
+		}
+			
+		int min = arr[0];
+		int profit=0, current=0;
+		for(int i =1; i <arr.length;i++)
+		{
+			if(arr[i]<=min)
+				min = arr[i];
+			else 
+			{
+				current = arr[i] - min ;
+				if(current > profit)
+					profit = current;
+			}
+		}
+		System.out.println("total profit: "+ profit);
+	
+	}
+	    public static void main (String[] args) 
+	    { 
+	  
+	    	int [] arr = {2, 3, 10, 6, 4, 8, 1, 11, 13, 3,  30};
+	    	//int [] arr = {7, 9, 5, 6, 3, 2};
+	    	//int[] arr = { 8, 7, 6, 5, 6};
+	    	findMaxProfit(arr);
+	    }
+}
+outpu: total profit: 29
+// end 
+
 //start 
 //https://www.geeksforgeeks.org/stock-buy-sell/ ...multiple times 
 public  class Solve
