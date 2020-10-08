@@ -1,0 +1,40 @@
+// start 
+// https://www.geeksforgeeks.org/count-substrings-character-occurring-k-times/?ref=rp
+
+public class Solve3 {
+
+	public static int count(String str, int k) 
+	{
+		if(k==0)
+			return 0;
+		
+		int ans =0;
+		int l =0, r=0;
+		int [] arr = new int [26];
+		for(; r<str.length(); r++)
+		{
+			arr[str.charAt(r)-'a']++;
+			while(arr[str.charAt(r)-'a']>k)
+				{
+					arr[str.charAt(l)-'a']--;
+					l++;
+				}
+			
+			
+				ans += r-l+1;
+			
+			
+		}
+		return ans;
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s = "aaabb";
+		System.out.println(count(s, 2));
+
+	}
+
+}
+// output: 12
+//end
