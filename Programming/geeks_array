@@ -1,3 +1,79 @@
+
+
+// start 
+// find key in sorted n rotated array 
+public class Solve4 {
+
+	public static int findPivot(int [] arr, int st, int en)
+	{
+		while(st<=en)
+		{
+			int mid = st + (en-st)/2;
+			if(mid > 0 && arr[mid]<arr[mid-1])
+				return mid;
+			if(mid <arr.length-1 && arr[mid]>arr[mid+1])
+				return mid+1;
+			if(arr[mid]>arr[en])
+				st = mid+1;
+			else en = mid-1;
+			
+		}
+		return -1;
+	}
+	
+	public static int bs(int [] arr, int st, int en, int key) {
+		
+		while(st<=en)
+		{
+			int mid = st+(en-st)/2;
+			if(arr[mid]== key)
+				return mid;
+			if(arr[mid]>key)
+				en = mid-1;
+			else st = mid+1;
+		}
+		return -1;
+	}
+	public static void sortedSearch(int [] arr, int key)
+	{
+		int pivotIndex = findPivot(arr, 0, arr.length-1);
+		System.out.println("pivot: " + pivotIndex);
+		int resIndex=-1;
+		if(pivotIndex==-1)
+		{
+			resIndex=  bs(arr, 0, arr.length-1, key);
+		}
+		else 
+		{
+			if(key>=arr[pivotIndex] && key <= arr[arr.length-1])
+				resIndex=  bs(arr, pivotIndex, arr.length-1, key);
+			else if(key >= arr[0] && key <= arr[pivotIndex-1])
+				resIndex=  bs(arr, 0, pivotIndex-1, key);
+			else {
+				
+				System.out.println("key not present");
+				return;
+			}
+				
+				
+		}
+		if(resIndex==-1)
+		{System.out.println("key not present");}
+		else 
+			System.out.println("key present at index "+ resIndex);
+	}
+	public static void main(String[] args) {
+		int [] arr = new int[] {1, 2, 3,4 ,5 , 6, 7, 8, 9};
+		sortedSearch(arr, 10);
+		
+		
+	
+	}
+
+}
+
+// end 
+
 // start 
 // rotateright
 public class Solve4 {
