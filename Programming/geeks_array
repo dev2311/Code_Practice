@@ -1,0 +1,39 @@
+// start 
+// rotateright
+public class Solve4 {
+	
+
+	public static void rotateRight(int [] arr, int d)
+	{
+		int [] temp = new int [d];
+		int last = arr.length-1;
+		for(int i = d-1; i>=0;i--)
+		{
+			temp[i]= arr[last];
+			last --;
+		}
+		int newlast= arr.length-1;
+		while(last>=0)
+		{
+			arr[newlast] = arr[last];
+			last --;
+			newlast--;
+		}
+		for(int i = 0; i<d; i++)
+		{
+			arr[i]= temp[i];
+		}
+		
+	}
+	public static void main(String[] args) {
+		int [] arr = new int[] {1, 2, 3, 4, 5, 6,7 ,8, 9};
+		System.out.println(Arrays.toString(arr));
+		rotateRight(arr, 4);
+		System.out.println(Arrays.toString(arr));
+		
+		
+	
+	}
+
+}
+// end
