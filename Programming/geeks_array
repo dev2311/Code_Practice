@@ -1,4 +1,52 @@
 // start 
+// find the max sum out of all possible arr[i]*i
+public class Solve4 {
+
+	// max sum i*arr[i]
+	
+	public static void maxSum(int [] arr)
+	{
+		int total=0;
+		int i =0;
+		int current =0;
+		while(i <arr.length)
+		{
+			total = total+arr[i];
+			
+			current = current+arr[i]*i;
+			i++;
+		}
+		
+		
+		int max = current;
+		int times = 2;
+		int last= arr.length-1;
+		while(times <=arr.length)
+		{
+			current = current+(total-arr[last])-(arr.length-1)*arr[last];
+			last--;
+			times++;
+			if(current> max)
+				max = current;
+		}
+		System.out.println(max);
+		
+	}
+	public static void main(String[] args) {
+		int [] arr = new int[] {8, 3, 1, 2};
+		maxSum(arr);
+		
+		
+	
+	}
+
+}
+
+
+
+// end 
+
+// start 
 // find sum in sorted n rotated 
 
 public class Solve4 {
