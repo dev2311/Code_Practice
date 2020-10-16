@@ -1,0 +1,100 @@
+// start 
+// nth node from end 
+
+class Node 
+{
+	int data; 
+	Node next;
+	Node(int data)
+	{this.data = data;
+		
+	next = null;
+	}
+	}
+class MyLinkedList
+{
+	Node root;
+	MyLinkedList()
+	{}
+	
+	public void add(int data)
+	{
+		if(root==null)
+		{
+			root = new Node(data);
+			return ;
+		}
+		else 
+		{
+			Node temp = root;
+			while(temp.next !=null)
+			{
+				temp = temp.next;
+			}
+			temp.next = new Node(data);
+		}
+	}
+	public void print()
+	{
+		Node temp = root;
+		while(temp!=null)
+		{System.out.print(temp.data+"  ");
+		temp = temp.next;}
+			
+	}
+	
+	}
+
+public class Solve3 {
+
+	public static void findNthFromEnd(Node root, int index)// index is 1 based
+	{
+		if(root==null)
+		{
+			System.out.println("not possible ");
+			return ;
+		}
+		int count = 1;
+		Node temp = root;
+		while(count<index)
+		{
+			if(temp.next!=null)
+			{
+				temp = temp.next;
+				count++;
+			}else 
+			{
+				System.out.println("small list");
+				return;
+			}
+		}
+		Node slow = root;
+		while(temp.next!=null)
+		{
+			temp = temp.next;
+			slow= slow.next;
+		}
+		System.out.println("data of nth node from last "+slow.data);
+		
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MyLinkedList ll = new MyLinkedList();
+		ll.add(1);
+		ll.add(2);
+		ll.add(3);
+		ll.add(4);
+		ll.add(5);
+		ll.add(6);
+		ll.add(7);
+		ll.add(8);
+		//ll.print();
+		findNthFromEnd(ll.root, 9);
+		
+		
+		
+	}
+
+}
+// end here 
