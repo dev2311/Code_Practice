@@ -1,0 +1,65 @@
+// start 
+// find number of empty cells in a matrix after each ooperation
+// do some more testing
+
+public class Solve4 {
+	
+	static long[] solve(int N, int K, int[][] cells){
+
+        Set<Integer> rowSet = new HashSet<>();
+        Set<Integer> colSet = new HashSet<>();
+
+        int empty = N*N;
+        int used =0;
+        long [] res = new long [K];
+        int row=0, col=0;
+
+
+        for(int i =0 ; i<K; i++)
+        {
+            row = cells[i][0];
+            col = cells [i][1];
+
+            if(rowSet.contains(row) && colSet.contains(col))
+            {
+                // do nothing 
+            }
+            else if(!rowSet.contains(row) && !colSet.contains(col))
+            {
+                used = used +  (2*N-1)- rowSet.size()- colSet.size();
+                rowSet.add(row);
+                colSet.add(col);
+            }
+            else if (rowSet.contains(row) && !colSet.contains(col))
+            {
+                used = used+ N - rowSet.size();
+                 colSet.add(col);
+
+            }
+            else if(! rowSet.contains(row) && colSet.contains(col))
+            {
+                used = used+ N - colSet.size();
+                 rowSet.add(row);
+
+
+            }
+                
+
+            //used = used - colSet.size();
+            res[i]= empty- used;
+
+
+        }
+        return res;
+       // Write your code here
+    
+    
+    }
+	public static void main(String[] args) {
+		
+		System.out.println(Arrays.toString(solve( 5, 4, new int[][] {{1,2}, {1, 3}, {1, 3}, {3, 3}})));
+
+	}
+
+}
+// end 
