@@ -1,4 +1,95 @@
+// start 
+// find sum in sorted n rotated 
 
+public class Solve4 {
+
+	public static int findPivot(int [] arr, int st, int en)
+	{
+		while(st<=en)
+		{
+			int mid = st + (en-st)/2;
+			if(mid > 0 && arr[mid]<arr[mid-1])
+				return mid;
+			if(mid <arr.length-1 && arr[mid]>arr[mid+1])
+				return mid+1;
+			if(arr[mid]>arr[en])
+				st = mid+1;
+			else en = mid-1;
+			
+		}
+		return -1;
+	}
+	public static boolean rotatedSum(int [] arr, int pivot, int key)
+	{
+		int st = pivot;
+		int en = pivot -1;
+		
+		while(st!=en)
+		{
+			if(arr[st]+arr[en]== key)
+			{
+				return true;
+			}
+			if(arr[st]+arr[en]> key)
+			{
+				en = (en + arr.length -1 )%arr.length;
+				
+				
+			}
+			else 
+			{
+				st = (st + 1 )%arr.length;
+			}
+		}
+		return false;
+	}
+	public static boolean simplsum(int [] arr, int key)
+	{
+		int st =0;
+		int en = arr.length-1;
+		while(st<en)
+		{
+			if(arr[st]+arr[en]==key)
+				return true;
+			if(arr[st]+arr[en]>key)
+				en --;
+			else st++;
+				
+			
+		}
+		return false;
+		
+	}
+	public static void findSum(int [] arr, int key)
+	{
+		int pivotIndex = findPivot(arr, 0, arr.length-1);
+		System.out.println("pivot: " + pivotIndex);
+		boolean resIndex=false;
+		if(pivotIndex==-1)
+		{
+			resIndex=  simplsum(arr, key);
+		}
+		else 
+		{
+			resIndex=  rotatedSum(arr, pivotIndex, key);
+				
+		}
+		if(resIndex==false)
+		{System.out.println("key not present");}
+		else 
+			System.out.println("key present at index "+ resIndex);
+	}
+	public static void main(String[] args) {
+		int [] arr = new int[] {5 , 6, 7, 8, 9, 1, 2, 3, 4};
+		findSum(arr, 3);
+		
+		
+	
+	}
+
+}
+
+// end 
 
 // start 
 // find key in sorted n rotated array 
