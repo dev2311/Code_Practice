@@ -1,0 +1,88 @@
+// start
+// complete this code n test it (currently not tested)
+
+public class Solution5 {
+
+
+	// pos 1: 2k, 2:500, 3:200, 4:100, 5:50
+
+	static int [][] noteTypes ; 
+	static int count = 0;
+	static int [] []collected ;
+	
+	public static void rollbackMethod()
+	{
+		for(int i =0; i <noteTypes.length; i++)
+		{
+			noteTypes[i][1]+= collected[i][1];
+		}
+		
+		// reinitialize zero collected array 
+		
+	}
+
+	public static void notesCount(int amount, int pos)
+	{
+		if(amount==0)
+			return;
+		if(amount>0 && pos==noteTypes.length)
+		{
+			count =-1;
+			return;
+		}
+		// check position notes are available in db or not 
+
+		int currentReq = amount/noteTypes[pos][0];
+		int available = noteTypes[pos][1];
+
+		if(available >= currentReq )
+		{
+			count += currentReq;
+			amount -=  (currentReq *noteTypes[pos][0] );
+			noteTypes[pos][1] -= currentReq;
+			collected[pos][1]= currentReq;
+
+			//notesCount(amount,  pos+1); 
+
+		}
+		else if (available >0 && available < currentReq)
+		{
+			count += available;
+			amount -=  (available *noteTypes[pos][0] );
+			noteTypes[pos][1] = 0;
+			collected[pos][1]= available;
+			//notesCount(amount,  pos+1); 
+
+		}
+		notesCount(amount,  pos+1);  
+
+	}
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		noteTypes = new int [5][1]; // inventory 
+		collected = new int [5][1];
+		// initialize it 
+		notesCount(3950, 0);
+		if(count>0)
+		{
+			System.out.println("req notes: "+ count);
+		}
+		else if(count ==-1)
+		{
+			rollbackMethod();
+			System.out.println("not sufficient money");
+		}
+
+
+
+
+
+	}
+
+}
+
+
+// end 
