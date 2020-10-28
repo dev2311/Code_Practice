@@ -1,0 +1,44 @@
+//start 
+// count number of subset (my initial version - recursive ) 
+//https://www.geeksforgeeks.org/count-of-subsets-with-sum-equal-to-x/
+public class Solution5 {
+
+
+	public static Set<String> st = new HashSet<>();
+	public static int countSubSet(int [] arr, int len,  int sum, String str)
+	{
+		if(sum==0 && !st.contains(str) )
+		{
+			st.add(str);
+			return 1;
+		}
+		if(sum>0 && len==0)
+			return 0;
+		
+		if(arr[len-1]<=sum)
+		{
+			String yes = str+"_"+(len-1);
+			String no = str;
+			return countSubSet(arr, len-1,  sum-arr[len-1], yes)+countSubSet(arr, len-1,  sum, no);
+		}
+		else 
+		{
+			String no = str;
+			return countSubSet(arr, len-1,  sum, no);
+		}
+			
+		
+		
+		
+		//return 0;
+	}
+	public static void main(String[] args) {
+		System.out.println(countSubSet(new int [] {2, 3, 5, 6, 8, 10}, 6, 10, ""));
+	
+		for(String s: st)
+			System.out.println(s);
+		
+	}
+
+}
+//
