@@ -1,0 +1,199 @@
+// start 
+// problems ...given nodes ..and a list of edges ..find all sets , take their squareroot then take ceil then add all of them to get output 
+// see given input output sample below the program
+
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Solution {
+	
+
+
+	public static int connectedSum(int n, List<String> edges) {
+    
+		List<Set<Integer>> al = new ArrayList<>();
+		
+		Set<Integer> firstSet = new HashSet<>();
+		String start = edges.get(0);
+		
+		String[] splitStr= start.split(" ");
+		if(Integer.parseInt(splitStr[0])!=Integer.parseInt(splitStr[1]))
+		{
+			firstSet.add(Integer.parseInt(splitStr[0]));
+			firstSet.add(Integer.parseInt(splitStr[1]));
+		}
+		al.add(firstSet);
+		//System.out.println(temp);
+		
+		for(int i=1; i <edges.size(); i++)
+		{
+			String currentStr= edges.get(i);
+			String[] currentsplitStr= currentStr.split(" ");
+			
+			if(Integer.parseInt(currentsplitStr[0])==Integer.parseInt(currentsplitStr[1]))
+			{
+				continue;
+			}
+			int j =0;
+			
+			int one = Integer.parseInt(currentsplitStr[0]);
+			int two = Integer.parseInt(currentsplitStr[1]);
+			while(j<i && j<al.size())
+			{
+				Set<Integer> currentSet = al.get(j);
+				if(currentSet.contains(one))
+				{
+					currentSet.add(two);
+					int currentIndex= j;
+					
+					mergeSet(al,currentIndex, two );
+					// now check for another set which contains "one" and merge these two set 
+					
+					break;
+					
+				}
+				else if(currentSet.contains(two))
+				{
+					currentSet.add(one);
+					int currentIndex= j;
+					mergeSet(al,currentIndex,  one );
+					// now check for another set which contains "one" and merge these two set 
+					break;
+				}
+				j++;
+			}// end of while 
+			if(j==al.size())
+			{
+				Set<Integer> newSet = new HashSet<>();
+				newSet.add(Integer.parseInt(currentsplitStr[0]));
+				newSet.add(Integer.parseInt(currentsplitStr[1]));
+				al.add(newSet);
+				
+			}
+		}// end of for loop 
+		
+		int res=0;
+		int count = 0;
+		for(int p=0; p< al.size(); p++)
+		{
+			Set<Integer> pSet = al.get(p);
+			int currentCount = pSet.size();
+			System.out.println("size of grp: "+ currentCount);
+			count+=currentCount;
+			int curRes= (int)Math.ceil((Math.sqrt(currentCount)));
+			System.out.println("curent ceil: "+ curRes);
+			res= res+curRes;
+			
+		}
+		
+		int diff = n -count;
+		
+		System.out.println("diff: "+ diff);
+		res= res+diff;
+		return res;
+	}
+	
+	public static void mergeSet(List<Set<Integer>> al, int currentIndex,  int findNumber ) {
+		
+		int startIndex= currentIndex+1;
+		for(; startIndex<al.size(); startIndex++)
+		{
+			Set<Integer> currentSet = al.get(startIndex);
+			if(currentSet.contains(findNumber))
+			{
+				// merge
+				Set<Integer> mergeSet = al.get(currentIndex);
+				mergeSet.addAll(currentSet);
+				al.remove(startIndex);// added this line 
+				break;
+				
+			}
+		}
+	}// method end 
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int num =16;
+		List<String>  al = new ArrayList<>();
+		al.add("6 11");
+		al.add("9 5");
+		al.add("11 9");
+		al.add("15 9");
+		al.add("13 15");
+		al.add("12 14");
+		al.add("15 16");
+		al.add("1 16");
+		
+		int num2=8;
+		List<String>  al2 = new ArrayList<>();
+		al2.add("8 1");
+		al2.add("5 8");
+		al2.add("7 3");
+		al2.add("8 6");
+		
+		
+	
+		
+		int x = connectedSum(num, al);
+		System.out.println("res "+ x);
+
+	}
+
+}
+
+// 1 5 6 9 11 12 13  14 15 16  
+/*
+16 
+8
+6 11
+9 5
+11 9
+15 9
+13 15
+12 14
+15 16
+1 16
+
+
+
+Your Output (stdout)
+16
+Expected Output
+
+Download
+11
+
+
+
+8 
+4
+8 1
+5 8
+7 3
+8 6
+Your Output (stdout)
+6
+Expected Output
+
+Download
+6
+
+
+
+
+4 
+2
+1 2
+1 4
+Your Output (stdout)
+3
+Expected Output
+3
+
+*/
+
+//end 
